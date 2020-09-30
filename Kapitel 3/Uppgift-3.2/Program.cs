@@ -10,13 +10,13 @@ namespace Uppgift_3._2
         {
             // Läs in VM vinnare, (Usa)
             Console.WriteLine("Vem vann Dam VM 2015? ");
-            string vinnare = Console.Readline();
+            string vinnare = Console.ReadLine();
 
             // Sanera inmatningen
             vinnare = vinnare.ToLower();
 
             // Kontrollera om rätt svar
-            if (statsminister == "usa")
+            if (vinnare == "usa")
             {
                 Console.WriteLine("Rätt svar!");           
             }

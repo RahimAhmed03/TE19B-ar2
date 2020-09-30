@@ -15,7 +15,7 @@ namespace Exempel_5
             string svar = $"Mitt förnamn är {namn}.";
             Console.WriteLine(svar);
 
-            Console.Writeline();
+            Console.WriteLine();
         }
     }
 }
