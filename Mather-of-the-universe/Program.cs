@@ -17,14 +17,14 @@ namespace Mather_of_the_universe
             Console.WriteLine("Vad är x i formeln x * 6 = 42?");
 
             // Läs in användarens svar tills det funkar
-            while (flagga == 0)
+            while ( == 0)
             {
                 // Läs in det användaren skriver
                 gissningText = Console.ReadLine();
 
                 // Är det ett tal eller inte?
                 // Blir true eller false
-               if (int.TryParse(gissningText, out gissning);)
+               if (int.TryParse(gissningText, out gissning));
                {
                    flagga == 1;
                } 

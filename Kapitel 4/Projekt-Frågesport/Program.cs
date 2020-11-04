@@ -25,11 +25,11 @@ namespace Projekt_Frågesport
                     Console.WriteLine("Tack för svaret med ett heltal!");                   
                 }
 
-                if (val1 != "2")
+               // if (val1 = "2")
                 {
                     Console.WriteLine("Tyvärr det var fel svar!");
                 }
-                else
+              //  else
                 {
                     Console.WriteLine("Du fick rätt bra jobbat!");
                 }
