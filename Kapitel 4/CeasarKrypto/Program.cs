@@ -14,7 +14,7 @@ namespace CeasarKrypto
             int textLängd = text.Length;
             Console.WriteLine($"Texten är {textLängd} lång");
 
-            // Be om användaren om nyckel
+            // Be användaren om nyckel
             Console.Write("Ange en nyckel (1-9): ");
             string nyckelString = Console.ReadLine();
 
