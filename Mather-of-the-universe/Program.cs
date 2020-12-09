@@ -17,7 +17,7 @@ namespace Mather_of_the_universe
             Console.WriteLine("Vad är x i formeln x * 6 = 42?");
 
             // Läs in användarens svar tills det funkar
-            while ( == 0)
+            while (gissning == 0)
             {
                 // Läs in det användaren skriver
                 gissningText = Console.ReadLine();
