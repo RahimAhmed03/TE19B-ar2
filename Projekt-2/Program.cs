@@ -22,7 +22,8 @@ namespace Projekt_2
                 // Läs in alla rader, dvs bordsbokningar
                 bordsInformation = File.ReadAllLines(filnamn);
                 Console.WriteLine("Bordsbokningar lästes in från fil");
-            } else
+            }
+            else
             {
                 // Skapa en tom bordslista i arrayen
                 // Lagra detta i felen
@@ -52,9 +53,8 @@ namespace Projekt_2
                 menyVal = Console.ReadLine();
 
                 // Hantera menyval
-                string antalGäster = "";
                 string bordNamn = "";
-                string bordNr = "";
+                int svar = 0, bordNr = 0, antalGäster = 0;
                 switch (menyVal)
                 {
                     case "1":
@@ -65,19 +65,20 @@ namespace Projekt_2
                             {
                                 // border är tomt
                                 Console.WriteLine($"Bord {i + 1} - Inga gäster");
-                            } else
+                            }
+                            else
                             {
                                 // Bordet har en bokning
                                 // Plocka namn och antal gäster
                                 string[] delar = bordsInformation[i].Split(',');
-                                antalGäster = delar[0];
+                                string antalGästerString = delar[0];
                                 bordNamn = delar[1];
 
                                 // Summera alla gäster
-                                totaltAntalGäster += int.Parse(antalGäster);
+                                totaltAntalGäster += int.Parse(antalGästerString);
 
                                 // Skriv ut bokningsinfo
-                                Console.WriteLine($"Bord {i + 1} - Namn: {bordNamn}, antal gäster: {antalGäster}");
+                                Console.WriteLine($"Bord {i + 1} - Namn: {bordNamn}, antal gäster: {antalGästerString}");
                             }
                         }
 
@@ -88,25 +89,11 @@ namespace Projekt_2
                     case "2":
                         // Fråga bordsnr
                         Console.WriteLine("Vilket bord vill du ändra på?");
-
-                        // @todo Kontrollera att man matar bord 1-8
-                        while (true)
+                        while (!int.TryParse(Console.ReadLine(), out svar) && svar <= 1 || svar > 8)
                         {
-                            bordNr = Console.ReadLine(); 
-                            if (int.Parse(bordNr) <= 0 || int.Parse(bordNr) > antalBord)
-                            {
-                                Console.WriteLine("Icke giltigt bordsnummer, vg försök igen");
-                                bordNr = Console.ReadLine();
-                            } else
-                            {
-                                break;
-                            }
+                            Console.WriteLine("Icke giltigt bordsnummer, vg försök igen");
                         }
-
-                        
-                        // @todo hantera inmatningsfel med tryParse()
-
-
+                        bordNr = svar;
 
                         // Fråga namn
                         Console.WriteLine("Ange ett namn");
@@ -114,24 +101,38 @@ namespace Projekt_2
 
                         // Fråga antal gäster
                         Console.WriteLine("Ange antal gäster?");
-                        antalGäster = Console.ReadLine();
-                        // @todo Vad händer om man mater fel antal gäster
+                        while (!int.TryParse(Console.ReadLine(), out svar) && svar <= 1 || svar > 8)
+                        {
+                            Console.WriteLine("Icke giltigt bordsnummer, vg försök igen");
+                        }
+                        antalGäster = svar;
 
                         // Spara i arrayen
-                        bordsInformation[int.Parse(bordNr) - 1] = $"{antalGäster}, {bordNamn}";
-
+                        bordsInformation[(bordNr) - 1] = $"{antalGäster}, {bordNamn}";
 
                         // Lagra i filen
                         File.WriteAllLines(filnamn, bordsInformation);
-
-
                         break;
 
                     case "3":
+                        // Fråga vilket bord man vill tömma
+                        Console.WriteLine("Vilket bord vill du tömma?");
+
+                        while (!int.TryParse(Console.ReadLine(), out svar) && svar <= 1 || svar > 8)
+                        {
+                            Console.WriteLine("Icke giltigt bordsnummer, vg försök igen");
+                        }
+                        bordNr = svar;
+
+                        // Återställ bordets info till tomt
+                        bordsInformation[bordNr - 1] = tomtBordBeskrivning;
+
+                        // Uppdatera filen
+                        File.WriteAllLines(filnamn, bordsInformation);
                         break;
 
                     case "4":
-                    break;
+                        break;
 
                     default:
                         Console.WriteLine("Du valde inte ett giltigt alternativ");
