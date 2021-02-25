@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace Prov_2A
 {
@@ -26,29 +27,7 @@ namespace Prov_2A
                 filmInformation = File.ReadAllLines(filnamn);
                 Console.WriteLine("Filmerna lästes in från fil");
             }
-            else
-            {
-                // Meddela användaren att filen eller filmerna inte finns
-                Console.WriteLine("Tyvärr finns inte det du sökte efter");
-
-                // Skapa en tom radlista i arrayen
-                // Lagra detta i filen
-                filmInformation = new string[antalFilmer];   // 50 nya tomma positioner
-
-                // Fyll arrayen med tomma filmer: 0, 1, 2, 3, 4, 5, 6, 7
-                for (int i = 0; i < antalFilmer; i++)
-                {
-                    filmInformation[i] = tomtFilmBeskrivning;
-                }
-
-                // Lagra i filen
-                File.WriteAllLines(filnamn, filmInformation);
-                Console.WriteLine("Fil med bordsinformation saknas, ny fil skapades");
-            }
-
-
         
-
         // Huvudloopen
         string menyVal = "";
         while (menyVal != "3")
@@ -80,7 +59,7 @@ namespace Prov_2A
                             {
                                 // Filmen finns
                                 // Plocka ut namn, intäkter och år
-                                delar = filmInformation[i].Split(',');
+                                delar = filmInformation[i].Split('\t');
                                 string antalFilmerString = delar[0];
                                 filmNamn = delar[1];
                                 intäkter = delar[2];
@@ -109,7 +88,7 @@ namespace Prov_2A
                     filmNr = svar;
 
                     // finns en film i det året?
-                    if (filmNr = true)
+                    if (filmNr == true)
                     {
                         Console.WriteLine("Hittade filmen/filmerna");
                     }
