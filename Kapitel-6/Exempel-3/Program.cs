@@ -19,8 +19,12 @@ namespace Exempel_3
             return z;
         }
 
-        // Metod för att vända på en text
         // Returnerar en string
+        /// <summary>
+        /// Metod för att vända på en text
+        /// </summary>
+        /// <param name="text"> Text som skallvändas</param>
+        /// <returns> Omvänta texten</returns>
         static string VändText(string text)
         {
             //...
